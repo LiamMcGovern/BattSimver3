@@ -1,6 +1,7 @@
 package actor;// N.B.  Use of default package at this point in
 // the program would indicate a lack of knowledge on the part of the student!
 
+import army.Army;
 import util.InputGUI;
 import util.SingletonRandom;
 
@@ -87,6 +88,22 @@ public abstract class Actor {
      * The <i>Actor</i> has a name and serial number associated with it, to keep track of the various actors.
      */
     Actor() {
+        actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
+        actorId = actorSerialNumber; //Make id = value of actorSerialNumber
+        name = String.format("%s%d", name, actorId); //Combining name with id
+        //Actor instance variables are automagically instantiated with random values between the defined limits.
+
+        //-----------Attributes-------------
+        //Generate random numbers for each attribute field.
+        //SingletonRandom is Prof. Woolard's random number generator.
+        strength = SingletonRandom.instance.getNormalDistribution(MIN_STRENGTH, MAX_STRENGTH, 3);
+        speed = SingletonRandom.instance.getNormalDistribution(MIN_SPEED, MAX_SPEED, 3);
+        health = SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 3);
+        //-----------Attributes-------------
+    }
+
+    Actor(Army allegience) {
+        //need to use allegience
         actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
         actorId = actorSerialNumber; //Make id = value of actorSerialNumber
         name = String.format("%s%d", name, actorId); //Combining name with id

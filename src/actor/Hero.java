@@ -28,7 +28,7 @@ public class Hero extends Actor{
     }
 
     /**
-     * Returns a formatted string contatining all Attributes of <i>Actor</i> and <b>Hero</b>
+     * Returns a formatted string containing all Attributes of <i>Actor</i> and <b>Hero</b>
      *
      * @return Returns a <i>String</i> String representation of the <b>Hero</b>.
      */
@@ -38,7 +38,7 @@ public class Hero extends Actor{
     }
 
     /**
-     * Allows user to input all values of the <b>Hero</b> object and its parent <i>Actor</i>
+     * Allows user to input all value's of the <b>Hero</b> object and its parent <i>Actor</i>
      */
     @Override //Override the Superclass's  (Actor) inputAllFields Method.
     public void inputAllFields() {
@@ -58,7 +58,7 @@ public class Hero extends Actor{
     }
 
     /**
-     * Checks the parameter value against predifined limits, and if within sets the Hero's armor field to the
+     * Checks the parameter value against predefined limits, and if within sets the Hero's armor field to the
      * proper value.
      *
      * @param armor Value to be assigned to the Hero's armor field.
