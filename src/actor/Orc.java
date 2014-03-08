@@ -18,13 +18,30 @@ public class Orc extends Actor {
      * If the Orc makes an attack there is a 50% chance the damage will be increased by 50%.
      */
    private boolean isRaging; //True is raging, false is not.
-   private double size; //Orc's size effects it's health but adversely effects it's speed.
+    /**
+     * Orc's size effects it's health but adversely effects it's speed.
+     * The greater the size the greater the Health. The smaller the less the health.
+     */
+   private double size; //Orc's size
 
 
     /**
+     * The quantity of damage taken is reduced by this constant
      * {@value}
      */
    private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
+
+
+    /**
+     * Max Health differs from other Actor's since this is an Orc.
+     * {@value}
+     */
+   private final double MAX_HEALTH = 200;
+    /**
+     * Min Health differs from other Actor's since this is an Orc.
+     * {@value}
+     */
+    private final double MIN_HEALTH = 1;
     /**
      * {@value}
      */
@@ -36,8 +53,8 @@ public class Orc extends Actor {
 
     public Orc (){
         super();
-        health = 1;
-        setIsRaging(false);
+        setHealth(SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 5));
+        setIsRaging(false); //by default the Orc is not raging.
         setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 5));
     }
 
@@ -48,15 +65,40 @@ public class Orc extends Actor {
                super.getName(), MAX_SIZE, MIN_SIZE)), MIN_SIZE, MAX_SIZE));
     }
 
+    /**
+     *
+     * @return Return the <b>Orc's</b> health.
+     */
     @Override
     public double getHealth(){
-        return (isRaging == true) ? this.health = 0 : this.health = 1;
+        return this.health;
     }
 
     @Override
     public String toString (){ //"\t Stealth:%4.1f \t", getArmor()
         return String.format("%s \t Size: %4.1f \t Rage: %b \t ", super.toString(), getSize(), getIsRaging());
     }
+
+    /**
+     * Return the set the Orc's health.
+     * @param health Value to set health to
+     */
+    @Override
+    public void setHealth(double health) {
+        //If user input exceeds limit, set it to nearest limit
+        if (health > MAX_HEALTH) {
+            System.out.printf("The entered Health value is greater than specified limits," +
+                    " setting the value to defined max %.1f instead %n", MAX_HEALTH);
+            this.health = MAX_HEALTH;
+        } else if (health < MIN_HEALTH) {
+            System.out.printf("The entered Health value is lower than specified limits," +
+                    " setting the value to defined min %.1f instead %n", MIN_HEALTH);
+            this.health = MIN_HEALTH;
+        } else {
+            this.health = health;//If user input is valid set Attribute to that value.
+        }
+    }
+
     public boolean getIsRaging() {
         return isRaging;
     }

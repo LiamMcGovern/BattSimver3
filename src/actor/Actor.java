@@ -58,30 +58,31 @@ public abstract class Actor {
      * actorSerialNumber a class variable
      * used to assign each actor a unique number, static since it should not be unique to each actor.
      */
-
     public static int actorSerialNumber = 0;
-    /**
-     * Starts with 0, increased every time it's used.
-     */
 
     //Actor instance variables
-    private String name = "Actor";
     /**
      * A string object initialized with the value of 'Actor'
      */
-    private int actorId;
+    private String name = "Actor";
+
+
     /**
-     * A int value represents the value of actorSerialNumber upon instantiation.
+     * actorId represents each Actors unique number
+     */
+    private int actorId;
+
+    /**
+     * Actor Strength....
      */
     private double strength;
     /**
      * Actor Speed....
      */
     private double speed;
-    /**
-     * Actor Strength....
-     */
-    private double health; /**Actor Health...*/
+
+    /**Actor Health...*/
+    protected double health;
 
     /**
      * <i>Actor</i> constructor establishes values for each attribute based on the generation of a random number.
@@ -161,7 +162,7 @@ public abstract class Actor {
 
     /**
      * Returns selected actors health
-     *
+     **
      * @return Returns actor's health
      */
     public double getHealth() { //getHealth returns the respective value of health to the object it's called by.
@@ -283,5 +284,4 @@ public abstract class Actor {
         final double healthToLowToMove = (MAX_HEALTH * 1 / 4);
         return (health > healthToLowToMove) ? true : false;
     }
-
 }
