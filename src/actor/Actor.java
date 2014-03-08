@@ -22,6 +22,7 @@ import java.lang.String;
  */
 public abstract class Actor {
 
+    Army actorAllegiance;
 
     /**
      * Defining the Maximum and Minimum values for each attribute
@@ -103,8 +104,9 @@ public abstract class Actor {
         //-----------Attributes-------------
     }
 
-    Actor(Army allegience) {
-        //need to use allegience
+    Actor(Army allegiance) {
+        this.actorAllegiance = allegiance; //Allow's for the Actor's allegiance to be set to a specific Army.
+
         actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
         actorId = actorSerialNumber; //Make id = value of actorSerialNumber
         name = String.format("%s%d", name, actorId); //Combining name with id
@@ -144,8 +146,10 @@ public abstract class Actor {
      * @return Returns a formatted string, containing the Actor's attributes.
      */
     public String toString() {
-        return String.format("Name: %-12s Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
+        return (this.all)
+                String.format("Name: %-12s Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
                 this.name, this.health, this.speed, this.strength); //formatting for presentation.
+
     }
 
     //----------get methods
@@ -281,7 +285,7 @@ public abstract class Actor {
      * @see Actor
      */
     public boolean isHealthyEnoughToMove() {
-        final double healthToLowToMove = (MAX_HEALTH * 1 / 4);
+        final double healthToLowToMove = (MAX_HEALTH * 0.10);
         return (health > healthToLowToMove) ? true : false;
     }
 }

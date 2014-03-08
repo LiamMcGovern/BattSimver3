@@ -6,7 +6,7 @@ import util.SingletonRandom;
 /**
  * Created by Lenny on 2/28/14.
  */
-public class Hero extends Actor{
+public class Human extends Actor{
 
     private double armor;
     /**
@@ -19,18 +19,18 @@ public class Hero extends Actor{
     private final double MIN_ARMOR = 0.0;
 
     /**
-     * <b>Hero</b> constructor calls the <i>Actor</i> constructor, then establishes a random value for the
+     * <b>Human</b> constructor calls the <i>Actor</i> constructor, then establishes a random value for the
      * new <b>armor</b> instance field.
      */
-    public Hero() {
+    public Human() {
         super();
         armor = SingletonRandom.instance.getNormalDistribution(MIN_ARMOR, MAX_ARMOR, 5.0);
     }
 
     /**
-     * Returns a formatted string containing all Attributes of <i>Actor</i> and <b>Hero</b>
+     * Returns a formatted string containing all Attributes of <i>Actor</i> and <b>Human</b>
      *
-     * @return Returns a <i>String</i> String representation of the <b>Hero</b>.
+     * @return Returns a <i>String</i> String representation of the <b>Human</b>.
      */
     @Override //Override the Superclass's  (Actor) toString Method.
     public String toString() {
@@ -38,7 +38,7 @@ public class Hero extends Actor{
     }
 
     /**
-     * Allows user to input all value's of the <b>Hero</b> object and its parent <i>Actor</i>
+     * Allows user to input all value's of the <b>Human</b> object and its parent <i>Actor</i>
      */
     @Override //Override the Superclass's  (Actor) inputAllFields Method.
     public void inputAllFields() {
@@ -50,19 +50,19 @@ public class Hero extends Actor{
     /**
      * Returns the value of the matching Object's armor field.
      *
-     * @return Returns the Hero's armor value (double).
-     * @see Hero
+     * @return Returns the Human's armor value (double).
+     * @see Human
      */
     public double getArmor() {
         return this.armor;
     }
 
     /**
-     * Checks the parameter value against predefined limits, and if within sets the Hero's armor field to the
+     * Checks the parameter value against predefined limits, and if within sets the Human's armor field to the
      * proper value.
      *
-     * @param armor Value to be assigned to the Hero's armor field.
-     * @see Hero
+     * @param armor Value to be assigned to the Human's armor field.
+     * @see Human
      */
     public void setArmor(double armor) {
         if (armor > MAX_ARMOR) {

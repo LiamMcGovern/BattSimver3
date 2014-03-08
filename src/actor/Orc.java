@@ -26,7 +26,8 @@ public class Orc extends Actor {
 
 
     /**
-     * The quantity of damage taken is reduced by this constant
+     * The quantity of damage taken is reduced by this constant, not actually implemented yet, not sure how the combat
+     * system will be put into action.
      * {@value}
      */
    private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
@@ -36,12 +37,12 @@ public class Orc extends Actor {
      * Max Health differs from other Actor's since this is an Orc.
      * {@value}
      */
-   private final double MAX_HEALTH = 200;
+   private final double ORC_MAX_HEALTH = 200;
     /**
      * Min Health differs from other Actor's since this is an Orc.
      * {@value}
      */
-    private final double MIN_HEALTH = 1;
+    private final double ORC_MIN_HEALTH = 1;
     /**
      * {@value}
      */
@@ -53,9 +54,14 @@ public class Orc extends Actor {
 
     public Orc (){
         super();
-        setHealth(SingletonRandom.instance.getNormalDistribution(MIN_HEALTH, MAX_HEALTH, 5));
-        setIsRaging(false); //by default the Orc is not raging.
-        setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 5));
+
+        /** We must reset the health, since the Orc has a different range for Health values*/
+        setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));
+        setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 4));
+        setHealth(getHealth() * (((getSize()-5) * 0.05) + 1) ); //Size of Orc modifying Health.
+        /** Generate random value for rage */
+        final double CHANCE_OF_RAGE = 0.05;
+        setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
     }
 
     @Override
@@ -63,6 +69,7 @@ public class Orc extends Actor {
         super.inputAllFields();
         setSize(InputGUI.getDouble((String.format("Input %s's Size [This must be between %4.1f and %4.1f]",
                super.getName(), MAX_SIZE, MIN_SIZE)), MIN_SIZE, MAX_SIZE));
+        setIsRaging(InputGUI.getBooleanGUI("Is the Orc currently in a state of Rage?"));
     }
 
     /**
@@ -86,14 +93,14 @@ public class Orc extends Actor {
     @Override
     public void setHealth(double health) {
         //If user input exceeds limit, set it to nearest limit
-        if (health > MAX_HEALTH) {
+        if (health > this.ORC_MAX_HEALTH) {
             System.out.printf("The entered Health value is greater than specified limits," +
-                    " setting the value to defined max %.1f instead %n", MAX_HEALTH);
-            this.health = MAX_HEALTH;
-        } else if (health < MIN_HEALTH) {
+                    " setting the value to defined max %.1f instead %n", this.ORC_MAX_HEALTH);
+            this.health = this.ORC_MAX_HEALTH;
+        } else if (health < this.ORC_MIN_HEALTH) {
             System.out.printf("The entered Health value is lower than specified limits," +
-                    " setting the value to defined min %.1f instead %n", MIN_HEALTH);
-            this.health = MIN_HEALTH;
+                    " setting the value to defined min %.1f instead %n", this.ORC_MIN_HEALTH);
+            this.health = this.ORC_MIN_HEALTH;
         } else {
             this.health = health;//If user input is valid set Attribute to that value.
         }
