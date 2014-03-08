@@ -9,23 +9,36 @@ import util.SingletonRandom;
  */
 public class Orc extends Actor {
 
-   private double rage; //represents the level of anger the
-   private double size;
 
-   private final double MAX_RAGE = 15.0;
-   private final double MIN_RAGE = 1.0;
+    /**
+     * <i>rage</i> value represents if Orc is in a state of rage, if it is the amount on damage dealt will be
+     * increased, and the amount of damage taken will be reduced for the next 3 attacks by the Orc or on the Orc.
+     * Whichever comes first.
+     * If the Orc takes damage the damage taken will be reduced by the amount of the constant RAGE_REDUCTION
+     * If the Orc makes an attack there is a 50% chance the damage will be increased by 50%.
+     */
+   private boolean isRaging; //True is raging, false is not.
+   private double size; //Orc's size effects it's health but adversely effects it's speed.
 
+
+    /**
+     * {@value}
+     */
+   private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
+    /**
+     * {@value}
+     */
    private final double MAX_SIZE = 10.0;
+    /**
+     * {@value}
+     */
    private final double MIN_SIZE = 1.0;
-
-
-
 
     public Orc (){
         super();
-        setRage(SingletonRandom.instance.getNormalDistribution(MIN_RAGE, MAX_RAGE, 5));
-        setSize(SingletonRandom.instance.getNormalDistribution(MIN_RAGE, MAX_RAGE, 5));
-
+        health = 1;
+        setIsRaging(false);
+        setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 5));
     }
 
     @Override
@@ -36,23 +49,28 @@ public class Orc extends Actor {
     }
 
     @Override
-    public String toString (){ //"\t Stealth:%4.1f \t", getArmor()
-        return String.format("%s \t Size: %4.1f \t Rage: %4.1f \t ", super.toString(), getSize(), getRage());
+    public double getHealth(){
+        return (isRaging == true) ? this.health = 0 : this.health = 1;
     }
 
-    public double getRage() {
-        return rage;
+    @Override
+    public String toString (){ //"\t Stealth:%4.1f \t", getArmor()
+        return String.format("%s \t Size: %4.1f \t Rage: %b \t ", super.toString(), getSize(), getIsRaging());
+    }
+    public boolean getIsRaging() {
+        return isRaging;
+    }
+
+    public void setIsRaging(boolean isRaging) {
+        this.isRaging = isRaging;
     }
 
     public double getSize() {
         return size;
     }
 
-    public void setRage(double rage) {
-        this.rage = rage;
-    }
-
     public void setSize(double size) {
         this.size = size;
     }
+
 }
