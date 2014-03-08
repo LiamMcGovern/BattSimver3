@@ -22,7 +22,7 @@ import java.lang.String;
  */
 public abstract class Actor {
 
-    Army actorAllegiance;
+    private Army actorAllegiance;
 
     /**
      * Defining the Maximum and Minimum values for each attribute
@@ -146,10 +146,10 @@ public abstract class Actor {
      * @return Returns a formatted string, containing the Actor's attributes.
      */
     public String toString() {
-        return (this.all)
-                String.format("Name: %-12s Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
-                this.name, this.health, this.speed, this.strength); //formatting for presentation.
-
+        return (actorAllegiance == null) ? String.format("Name: %-12s Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
+                this.name, this.health, this.speed, this.strength)
+                : String.format("Name: %-12s \t Army:%s \t Health:%4.1f \t Speed:%4.1f \t Strength:%4.1f",
+                this.name, actorAllegiance.getArmyName(), this.health, this.speed, this.strength);
     }
 
     //----------get methods
@@ -182,6 +182,7 @@ public abstract class Actor {
         return this.strength;
     }
 
+
     /**
      * Returns selected actors speed
      *
@@ -210,6 +211,10 @@ public abstract class Actor {
     //Each double Attribute is checked against the corresponding predefined limit
     //If it exceeds either limit the value is set to the nearest limit and the user is notified.
     //Otherwise the selected field is set to the specified value.
+
+     public void setActorAllegiance(Army actorAllegiance) {
+        this.actorAllegiance = actorAllegiance;
+    }
 
     /**
      * Sets the value of the Actor's health.

@@ -1,6 +1,6 @@
 package army;
 
-import actor.Actor;
+import actor.*;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class Army {
     /**
-     * sArmyName is Army a String representing the Army object's name.
+     * armyName is Army a String representing the Army object's name.
      */
-    private String sArmyName = "Unnamed Army";
+    protected String armyName = "Unnamed Army";
 
 
     /**
@@ -24,8 +24,39 @@ public class Army {
      * @param armyName
      */
     public Army(String armyName){
-        this.sArmyName = armyName;
+        this.armyName = armyName;
         armyForces = new ArrayList<Actor>();
+    }
+
+    public Army(String armyName, int quantityOfActors){
+        this.armyName = armyName;
+        armyForces = new ArrayList<Actor>(quantityOfActors);
+    }
+
+    public void fillArmy(int quantityOfActors){
+        //Probabilities
+        final double PROBABILITY_OF_ORC = 0.4;
+        final double PROBABILITY_OF_HUMAN = 0.3;
+        final double PROBABILITY_OF_HOBBIT = 0.25;
+        final double PROBABILITY_OF_WIZARD = 0.05;
+
+
+        /**
+         * Really long winded method of
+         */
+        for (i=0;i<quantityOfActors;i++){
+            Actor tempActor;
+            double tempNum = Math.random();
+            double tempCount=0;
+            if (tempNum <= PROBABILITY_OF_WIZARD) { tempActor = new Wizard(); armyForces.add(tempActor); }
+            tempCount+=PROBABILITY_OF_WIZARD;
+            if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_ORC) { tempActor = new Orc(); armyForces.add(tempActor);}
+            tempCount+=PROBABILITY_OF_ORC;
+            if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_HUMAN) { tempActor = new Human(); armyForces.add(tempActor);}
+            tempCount+=PROBABILITY_OF_HUMAN;
+            if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_HOBBIT) { tempActor = new Hobbit(); armyForces.add(tempActor);}
+        }
+
     }
 
     /**
@@ -40,16 +71,16 @@ public class Army {
      *
      * @return Returns the String reprentation of the Army
      */
-    public String getsArmyName() {
-        return sArmyName;
+    public String getArmyName() {
+        return armyName;
     }
 
 
     public void setArmyForces(ArrayList<Actor> armyForces) {
         this.armyForces = armyForces;
     }
-    public void setsArmyName(String sArmyName) {
-        this.sArmyName = sArmyName;
+    public void setArmyName(String armyName) {
+        this.armyName = armyName;
     }
 
 }

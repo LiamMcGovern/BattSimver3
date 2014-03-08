@@ -1,6 +1,7 @@
 package actor;
 
 
+import army.Army;
 import util.InputGUI;
 import util.SingletonRandom;
 
@@ -63,6 +64,20 @@ public class Orc extends Actor {
         final double CHANCE_OF_RAGE = 0.05;
         setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
     }
+
+    public Orc (Army army){
+
+        //super.setActorAllegiance(army);
+        super(army);
+        /** We must reset the health, since the Orc has a different range for Health values*/
+        setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));
+        setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 4));
+        setHealth(getHealth() * (((getSize()-5) * 0.05) + 1) ); //Size of Orc modifying Health.
+        /** Generate random value for rage */
+        final double CHANCE_OF_RAGE = 0.05;
+        setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
+    }
+
 
     @Override
     public void inputAllFields(){
