@@ -42,8 +42,11 @@ public class Army {
 
 
         /**
-         * Really long winded method of
+         * Really long winded method of implementing a probability based system, that generates actors
          */
+
+
+
         for (i=0;i<quantityOfActors;i++){
             Actor tempActor;
             double tempNum = Math.random();
