@@ -36,7 +36,7 @@ public class Hobbit extends Actor {
         stealth = SingletonRandom.instance.getNormalDistribution(MIN_STEALTH, MAX_STEALTH, 3.0);
     }
 
-    public Hobbit(Army allegiance)  {
+    public Hobbit(Army allegiance) {
         super(allegiance);
         stealth = SingletonRandom.instance.getNormalDistribution(MIN_STEALTH, MAX_STEALTH, 3.0);
     }

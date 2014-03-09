@@ -19,10 +19,10 @@ public class ArmyTest {
         Army armyTwo;
 
 
-        boolean setCapacity=InputGUI.getBooleanGUI("Would you like to initialize them automagically with a predifined" +
+        boolean setCapacity = InputGUI.getBooleanGUI("Would you like to initialize them automagically with a predifined" +
                 "quantity of actors?");
-        if (setCapacity==true){
-            armyCapacity=InputGUI.getInt("Input the capacity <0-999>", 0, 999);
+        if (setCapacity == true) {
+            armyCapacity = InputGUI.getInt("Input the capacity <0-999>", 0, 999);
             //Create based on provided capacity.
             armyOne = new Army(firstArmyName, armyCapacity);
             armyTwo = new Army(secondArmyName, armyCapacity);
@@ -34,7 +34,6 @@ public class ArmyTest {
             armyOne.fillArmy(10);
             armyTwo.fillArmy(10);
         }
-
 
 
     }

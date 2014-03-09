@@ -23,7 +23,7 @@ public class Human extends Actor {
     /**
      * {@value}
      */
-    private boolean hasHorse;
+    private boolean hasMount;
 
     /**
      * <b>Human</b> constructor calls the <i>Actor</i> constructor, then establishes a random value for the
@@ -31,18 +31,21 @@ public class Human extends Actor {
      */
     public Human() {
         super();
-        final double CHANCEOFHORSE = 0.42;
-        setHasHorse(Math.random() < CHANCEOFHORSE); //91% Chance.
+        final double CHANCEOFMOUNT = 0.42;
+        setHasMount(Math.random() < CHANCEOFMOUNT); //91% Chance.
         setArmor(SingletonRandom.instance.getNormalDistribution(MIN_ARMOR, MAX_ARMOR, 5.0));
     }
 
+    /**
+     * Allows for a Human to be created with the a defined allegiance.
+     * @param allegiance the location information for a army object.
+     */
     public Human(Army allegiance) {
         super(allegiance);
-        final double CHANCEOFHORSE = 0.42;
-        setHasHorse(Math.random() < CHANCEOFHORSE); //91% Chance.
+        final double CHANCEOFMOUNT = 0.42;
+        setHasMount(Math.random() < CHANCEOFMOUNT); //91% Chance.
         setArmor(SingletonRandom.instance.getNormalDistribution(MIN_ARMOR, MAX_ARMOR, 5.0));
     }
-
 
     /**
      * Returns a formatted string containing all Attributes of <i>Actor</i> and <b>Human</b>
@@ -51,7 +54,7 @@ public class Human extends Actor {
      */
     @Override //Override the Superclass's  (Actor) toString Method.
     public String toString() {
-        return String.format(super.toString() + "\t Armor:%4.1f \t Has Horse:%b", getArmor(), getHasHorse());
+        return String.format(super.toString() + "\t Armor:%4.1f \t Has Mount:%b", getArmor(), getHasMount());
     }
 
     /**
@@ -60,7 +63,7 @@ public class Human extends Actor {
     @Override //Override the Superclass's  (Actor) inputAllFields Method.
     public void inputAllFields() {
         super.inputAllFields();
-        setHasHorse(InputGUI.getBooleanGUI(String.format("Is %s riding a horse?", super.getName())));
+        setHasMount(InputGUI.getBooleanGUI(String.format("Is %s riding a Mount?", super.getName())));
         setArmor(InputGUI.getDouble((String.format("Input %s's Armor [This must be between %4.1f and %4.1f]",
                 super.getName(), MAX_ARMOR, MIN_ARMOR)), MIN_ARMOR, MAX_ARMOR));
     }
@@ -75,15 +78,19 @@ public class Human extends Actor {
         return this.armor;
     }
 
-    public boolean getHasHorse() {
-        return this.hasHorse;
+    /**
+     *
+     * @return Returns a boolean value representing the Human's possession of a Mount.
+     */
+    public boolean getHasMount() {
+        return this.hasMount;
     }
 
     /**
-     * @param hasHorse returns a boolean representing the presence or lack thereof of a mount.
+     * @param hasMount returns a boolean representing the presence or lack thereof of a mount.
      */
-    public void setHasHorse(boolean hasHorse) {
-        this.hasHorse = hasHorse;
+    public void setHasMount(boolean hasMount) {
+        this.hasMount = hasMount;
     }
 
     /**

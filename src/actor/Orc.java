@@ -9,8 +9,6 @@ import util.SingletonRandom;
  * Created by Lenny on 2/28/14.
  */
 public class Orc extends Actor {
-
-
     /**
      * <i>rage</i> value represents if Orc is in a state of rage, if it is the amount on damage dealt will be
      * increased, and the amount of damage taken will be reduced for the next 3 attacks by the Orc or on the Orc.
@@ -18,6 +16,7 @@ public class Orc extends Actor {
      * If the Orc takes damage the damage taken will be reduced by the amount of the constant RAGE_REDUCTION
      * If the Orc makes an attack there is a 50% chance the damage will be increased by 50%.
      */
+
     private boolean isRaging; //True is raging, false is not.
     /**
      * Orc's size effects it's health but adversely effects it's speed.
@@ -25,14 +24,12 @@ public class Orc extends Actor {
      */
     private double size; //Orc's size
 
-
     /**
      * The quantity of damage taken is reduced by this constant, not actually implemented yet, not sure how the combat
      * system will be put into action.
      * {@value}
      */
     private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
-
 
     /**
      * Max Health differs from other Actor's since this is an Orc.
@@ -53,6 +50,13 @@ public class Orc extends Actor {
      */
     private final double MIN_SIZE = 1.0;
 
+    /**
+     * Orc constructor, generates the various variables based upon randomly generated values.
+     * Attributes specific to the Orc are<br></br>  boolean <b>isRaging</b> value, which represents if the Orc is in a state
+     * of Rage.
+     * double size effects it's health but adversely effects it's speed.
+     * The greater the size the greater the Health. The smaller the less the health.
+     */
     public Orc() {
         super();
 
@@ -65,6 +69,14 @@ public class Orc extends Actor {
         setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
     }
 
+     /**
+     * Orc constructor, generates the various variables based upon randomly generated values.
+     * Attributes specific to the Orc are<br></br>  boolean <b>isRaging</b> value, which represents if the Orc is in a state
+     * of Rage.
+     * double size effects it's health but adversely effects it's speed.
+     * The greater the size the greater the Health. The smaller the less the health.
+     * @param army
+     */
     public Orc(Army army) {
         super(army);
         /** We must reset the health, since the Orc has a different range for Health values*/

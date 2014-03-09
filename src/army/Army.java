@@ -13,7 +13,6 @@ public class Army {
      */
     protected String armyName = "Unnamed Army";
 
-
     /**
      * armyForces will hold the 'Army' of Actor objects
      */
@@ -30,8 +29,8 @@ public class Army {
     }
 
     /**
-     * Constructor for army, that recieves a name and automagically populates the army's forces based on the provided
-     * quantityOfActors arguement.
+     * Constructor for army, that receives a name and automagically populates the army's forces based on the provided
+     * quantityOfActors argument.
      *
      * @param armyName         String that will become the aArmy's name
      * @param quantityOfActors Quantity of actors to Populate the Army with.
@@ -46,10 +45,12 @@ public class Army {
      * appearing. It makes sense that their is a higher probability to witness a Orc / Human in battle then a Wizard
      * so I have implemented the probability to address that, and to establish a realistic representation of
      * a live Battlefield.
-     *
-     * @param quantityOfActors
+     * This differs from populate because it automatically populates the army forces Randomly, without requiring a
+     * predefined class. [Though the probabilities are predefined.]
+     * @param quantityOfActors the quantity of Actor's to create.
+     * @param allegiance the allegiance of the forces to fill the Army with.
      */
-    public void fillArmy(int quantityOfActors) {
+    public void fillArmy(int quantityOfActors, Army allegiance) {
         //Probabilities
         final double PROBABILITY_OF_ORC = 0.4;
         final double PROBABILITY_OF_HUMAN = 0.3;
@@ -67,34 +68,46 @@ public class Army {
             double tempNum = Math.random();
             double tempCount = 0;
             if (tempNum <= PROBABILITY_OF_WIZARD) {
-                tempActor = new Wizard();
+                tempActor = new Wizard(allegiance);
                 armyForces.add(tempActor);
             }
             tempCount += PROBABILITY_OF_WIZARD;
             if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_ORC) {
-                tempActor = new Orc();
+                tempActor = new Orc(allegiance);
                 armyForces.add(tempActor);
             }
             tempCount += PROBABILITY_OF_ORC;
             if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_HUMAN) {
-                tempActor = new Human();
+                tempActor = new Human(allegiance);
                 armyForces.add(tempActor);
             }
             tempCount += PROBABILITY_OF_HUMAN;
             if (tempNum > tempCount && tempNum <= tempCount + PROBABILITY_OF_HOBBIT) {
-                tempActor = new Hobbit();
+                tempActor = new Hobbit(allegiance);
                 armyForces.add(tempActor);
             }
         }
     }
 
     /**
+     * Populates army with the type and quantity provided.
+     * @param typeOfActor Type of Actor (defined in ActorFactor)
+     * @param numToAdd quantity of Actors to populate forces with.
+     */
+    public void populate(ActorFactory.Type typeOfActor, int numToAdd){
+        for (int i = 0; i < numToAdd; i++) {
+            armyForces.add(typeOfActor.create(this));
+        }
+    }
+
+    /**
      * Allows editing of Actor object at specified index.
+     *
      * @param indexOfActorToEdit
      */
-    public void edit(int indexOfActorToEdit){
+    public void edit(int indexOfActorToEdit) {
         Actor tempActor;
-        tempActor=armyForces.get(indexOfActorToEdit);
+        tempActor = armyForces.get(indexOfActorToEdit);
         tempActor.inputAllFields();
         armyForces.set(indexOfActorToEdit, tempActor);
     }
@@ -102,12 +115,18 @@ public class Army {
     /**
      * Display each Actor to console (via toString)
      */
-    public void display(){
+    public void display() {
         System.out.printf("Displaying %s's Forces", this.getArmyName());
         for (Actor iActor : armyForces) {
             System.out.println(iActor);
         }
     }
+
+    /**
+     * Returns the size of the Army
+     * @return Returns the quantity of Actors in the Army.
+     */
+    public int size(){ return armyForces.size(); }
 
     /**
      * @return Returns the ArrayList object of the Army's Actor's
