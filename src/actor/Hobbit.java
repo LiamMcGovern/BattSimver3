@@ -1,5 +1,6 @@
 package actor;
 
+import army.Army;
 import util.InputGUI;
 import util.SingletonRandom;
 
@@ -32,6 +33,11 @@ public class Hobbit extends Actor {
      */
     public Hobbit() {
         super();
+        stealth = SingletonRandom.instance.getNormalDistribution(MIN_STEALTH, MAX_STEALTH, 3.0);
+    }
+
+    public Hobbit(Army allegiance)  {
+        super(allegiance);
         stealth = SingletonRandom.instance.getNormalDistribution(MIN_STEALTH, MAX_STEALTH, 3.0);
     }
 

@@ -1,4 +1,5 @@
 package util;
+
 import java.util.Scanner;
 
 /**
@@ -8,21 +9,30 @@ import java.util.Scanner;
  * @author Rex Woollard
  */
 public final class Input {
-    /** Keyword <i>static</i> makes this a <i>class</i> oriented variable, rather than <i>object</i> oriented variable; only one instance of an <i>Input</i> object will ever exist, and the instance is tracked by this reference variable. */
+    /**
+     * Keyword <i>static</i> makes this a <i>class</i> oriented variable, rather than <i>object</i> oriented variable; only one instance of an <i>Input</i> object will ever exist, and the instance is tracked by this reference variable.
+     */
     public final static Input instance = new Input();
-    /** Each input method allows for a number failed attempts before throwing an exception. */
+    /**
+     * Each input method allows for a number failed attempts before throwing an exception.
+     */
     public final static int MAX_ATTEMPTS = 3;
-    /** Object-oriented instance variable, but since only one <i>Input</i> can ever be created, only one <i>Scanner</i> object will ever be created. */
+    /**
+     * Object-oriented instance variable, but since only one <i>Input</i> can ever be created, only one <i>Scanner</i> object will ever be created.
+     */
     private Scanner scannerKeyboard;
 
-    /** A <i>private</i> constructor guarantees that no <i>Input</i> object can be created from outside the <i>Input</i> class; this is essential for the <i>singleton</i> design pattern. */
+    /**
+     * A <i>private</i> constructor guarantees that no <i>Input</i> object can be created from outside the <i>Input</i> class; this is essential for the <i>singleton</i> design pattern.
+     */
     private Input() {
         scannerKeyboard = new Scanner(System.in);
     }
 
     /**
      * Presents a prompt to the user and retrieves an <i>double</i> value.
-     * @param prompt   reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
+     *
+     * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
      * @return <i>double</i> value input from keyboard
      */
 
@@ -39,15 +49,16 @@ public final class Input {
                     return 0.0;
                 System.out.format("Invalid double: %s", prompt);
             }
-        } while(numAttempts < MAX_ATTEMPTS);
+        } while (numAttempts < MAX_ATTEMPTS);
         throw new RuntimeException("Too many failed attempts.");
     } // end double getDouble()
 
     /**
      * Presents a prompt to the user and retrieves a <i>double</i> value which is within the range of <i>low</i> to <i>high</i> (inclusive).
+     *
      * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
-     * @param low lower boundary on the range of legitimate values
-     * @param high upper boundary on the range of legitimate values
+     * @param low    lower boundary on the range of legitimate values
+     * @param high   upper boundary on the range of legitimate values
      * @return <i>double</i> value input from keyboard
      */
     public double getDouble(String prompt, double low, double high) throws NumberFormatException, RuntimeException {
@@ -72,7 +83,8 @@ public final class Input {
 
     /**
      * Presents a prompt to the user and retrieves an <i>int</i> value.
-     * @param prompt   reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
+     *
+     * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
      * @return <i>int</i> value input from keyboard
      */
     public int getInt(String prompt) throws NumberFormatException, RuntimeException {
@@ -88,15 +100,16 @@ public final class Input {
                     return 0; // snap to 0
                 System.out.format("Invalid integer: %s", prompt);
             }
-        } while(numAttempts < MAX_ATTEMPTS);
+        } while (numAttempts < MAX_ATTEMPTS);
         throw new RuntimeException("Too many failed attempts.");
     } // end int getInt()
 
     /**
      * Presents a prompt to the user and retrieves an <i>int</i> value which is within the range of <i>low</i> to <i>high</i> (inclusive).
+     *
      * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
-     * @param low lower boundary on the range of legitimate values
-     * @param high upper boundary on the range of legitimate values
+     * @param low    lower boundary on the range of legitimate values
+     * @param high   upper boundary on the range of legitimate values
      * @return <i>int</i> value input from keyboard
      */
     public int getInt(String prompt, int low, int high) throws NumberFormatException, RuntimeException {
@@ -121,6 +134,7 @@ public final class Input {
 
     /**
      * Presents a prompt to the user and retrieves a <i>reference-to-String</i>.
+     *
      * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
      * @return <i>reference-to-String</i> object created by keyboard input
      */
@@ -134,6 +148,7 @@ public final class Input {
 
     /**
      * Presents a prompt to the user and retrieves a <i>boolean</i> value.
+     *
      * @param prompt reference to a <i>String</i> object whose contents will be displayed to the user as a prompt.
      * @return <i>boolean</i> value input from keyboard
      */

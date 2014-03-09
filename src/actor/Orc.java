@@ -18,12 +18,12 @@ public class Orc extends Actor {
      * If the Orc takes damage the damage taken will be reduced by the amount of the constant RAGE_REDUCTION
      * If the Orc makes an attack there is a 50% chance the damage will be increased by 50%.
      */
-   private boolean isRaging; //True is raging, false is not.
+    private boolean isRaging; //True is raging, false is not.
     /**
      * Orc's size effects it's health but adversely effects it's speed.
      * The greater the size the greater the Health. The smaller the less the health.
      */
-   private double size; //Orc's size
+    private double size; //Orc's size
 
 
     /**
@@ -31,14 +31,14 @@ public class Orc extends Actor {
      * system will be put into action.
      * {@value}
      */
-   private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
+    private final double RAGE_REDUCTION = 0.70; //The quantity of damage taken is reduce to 70%.
 
 
     /**
      * Max Health differs from other Actor's since this is an Orc.
      * {@value}
      */
-   private final double ORC_MAX_HEALTH = 200;
+    private final double ORC_MAX_HEALTH = 200;
     /**
      * Min Health differs from other Actor's since this is an Orc.
      * {@value}
@@ -47,30 +47,30 @@ public class Orc extends Actor {
     /**
      * {@value}
      */
-   private final double MAX_SIZE = 10.0;
+    private final double MAX_SIZE = 10.0;
     /**
      * {@value}
      */
-   private final double MIN_SIZE = 1.0;
+    private final double MIN_SIZE = 1.0;
 
-    public Orc (){
+    public Orc() {
         super();
 
         /** We must reset the health, since the Orc has a different range for Health values*/
         setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));
         setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 4));
-        setHealth(getHealth() * (((getSize()-5) * 0.05) + 1) ); //Size of Orc modifying Health.
+        setHealth(getHealth() * (((getSize() - 5) * 0.05) + 1)); //Size of Orc modifying Health.
         /** Generate random value for rage */
         final double CHANCE_OF_RAGE = 0.05;
         setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
     }
 
-    public Orc (Army army){
+    public Orc(Army army) {
         super(army);
         /** We must reset the health, since the Orc has a different range for Health values*/
         setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));
         setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 4));
-        setHealth(getHealth() * (((getSize()-5) * 0.05) + 1) ); //Size of Orc modifying Health.
+        setHealth(getHealth() * (((getSize() - 5) * 0.05) + 1)); //Size of Orc modifying Health.
         /** Generate random value for rage */
         final double CHANCE_OF_RAGE = 0.05;
         setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
@@ -78,29 +78,29 @@ public class Orc extends Actor {
 
 
     @Override
-    public void inputAllFields(){
+    public void inputAllFields() {
         super.inputAllFields();
         setSize(InputGUI.getDouble((String.format("Input %s's Size [This must be between %4.1f and %4.1f]",
-               super.getName(), MAX_SIZE, MIN_SIZE)), MIN_SIZE, MAX_SIZE));
+                super.getName(), MAX_SIZE, MIN_SIZE)), MIN_SIZE, MAX_SIZE));
         setIsRaging(InputGUI.getBooleanGUI("Is the Orc currently in a state of Rage?"));
     }
 
     /**
-     *
      * @return Return the <b>Orc's</b> health.
      */
     @Override
-    public double getHealth(){
+    public double getHealth() {
         return this.health;
     }
 
     @Override
-    public String toString (){ //"\t Stealth:%4.1f \t", getArmor()
+    public String toString() { //"\t Stealth:%4.1f \t", getArmor()
         return String.format("%s \t Size: %4.1f \t Rage: %b \t ", super.toString(), getSize(), getIsRaging());
     }
 
     /**
      * Return the set the Orc's health.
+     *
      * @param health Value to set health to
      */
     @Override

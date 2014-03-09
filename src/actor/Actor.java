@@ -82,7 +82,9 @@ public abstract class Actor {
      */
     private double speed;
 
-    /**Actor Health...*/
+    /**
+     * Actor Health...
+     */
     protected double health;
 
     /**
@@ -166,7 +168,8 @@ public abstract class Actor {
 
     /**
      * Returns selected actors health
-     **
+     * *
+     *
      * @return Returns actor's health
      */
     public double getHealth() { //getHealth returns the respective value of health to the object it's called by.
@@ -212,7 +215,7 @@ public abstract class Actor {
     //If it exceeds either limit the value is set to the nearest limit and the user is notified.
     //Otherwise the selected field is set to the specified value.
 
-     public void setActorAllegiance(Army actorAllegiance) {
+    public void setActorAllegiance(Army actorAllegiance) {
         this.actorAllegiance = actorAllegiance;
     }
 

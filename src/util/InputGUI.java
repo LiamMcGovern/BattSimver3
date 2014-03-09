@@ -1,4 +1,5 @@
 package util;
+
 import javax.swing.JOptionPane;// for simple GUI Input/Output
 
 /**
@@ -8,11 +9,14 @@ import javax.swing.JOptionPane;// for simple GUI Input/Output
  * @version 1.9
  */
 public final class InputGUI { // final prevents creation of subclasses using extends Input
-    private InputGUI() { } // prevents the creation of a InputGUI object, since all methods are static (that is, no object is required to call the method).
+
+    private InputGUI() {
+    } // prevents the creation of a InputGUI object, since all methods are static (that is, no object is required to call the method).
 
     /**
      * Inputs (reads) a line from a dialog box, capturing input as a <i>String</i>.
-     * @param prompt  Text in the message that is to be displayed
+     *
+     * @param prompt Text in the message that is to be displayed
      * @see javax.swing.JOptionPane
      */
     public static String getString(String prompt) {
@@ -21,7 +25,8 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a message in a dialog box.
-     * @param message  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     *
+     * @param message <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
      * @see javax.swing.JOptionPane
      */
     public static void showMessageGUI(String message) {
@@ -30,7 +35,8 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a message in a dialog box.
-     * @param message  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     *
+     * @param message <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
      * @see javax.swing.JOptionPane
      */
     public static void showErrorGUI(String message) {
@@ -39,7 +45,8 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a prompt and attempts to retrieve <i>int</i> input; if no valid <i>int</i> input user is prompted to try again a limited number of times before
-     * @param prompt  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     *
+     * @param prompt <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
      * @return value as an <i>int</i>
      * @see javax.swing.JOptionPane
      */
@@ -59,7 +66,7 @@ public final class InputGUI { // final prevents creation of subclasses using ext
                 if (convertedResponse < low || convertedResponse > high) {
                     if (++inputFailureCount > ALLOWABLE_INPUT_FAILURES) {
                         showErrorGUI("Too many unsuccessful attempts. Setting to 0");
-                        return 0;	// exits on failure to complete input operation
+                        return 0;    // exits on failure to complete input operation
                     }
                     showErrorGUI("Number must be between " + low + " and " + high + " (inclusive).");
                 } else
@@ -69,7 +76,7 @@ public final class InputGUI { // final prevents creation of subclasses using ext
                     showErrorGUI("You must enter an integer.");
                 } else {
                     showErrorGUI("Too many unsuccessful attempts. Setting to 0");
-                    return 0;	// exits on failure to complete input operation
+                    return 0;    // exits on failure to complete input operation
                 }
             }
         }
@@ -77,7 +84,8 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a prompt and attempts to retrieve <i>int</i> input; if no valid <i>int</i> input user is prompted to try again a limited number of times before
-     * @param prompt  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     *
+     * @param prompt <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
      * @return value as an <i>int</i>
      * @see javax.swing.JOptionPane
      */
@@ -97,7 +105,7 @@ public final class InputGUI { // final prevents creation of subclasses using ext
                 if (convertedResponse < low || convertedResponse > high) {
                     if (++inputFailureCount > ALLOWABLE_INPUT_FAILURES) {
                         showErrorGUI("Too many unsuccessful attempts. Setting to 0");
-                        return 0.0;	// exits on failure to complete input operation
+                        return 0.0;    // exits on failure to complete input operation
                     }
                     showErrorGUI("Number must be between " + low + " and " + high + " (inclusive).");
                 } else
@@ -107,7 +115,7 @@ public final class InputGUI { // final prevents creation of subclasses using ext
                     showErrorGUI("You must enter an integer.");
                 } else {
                     showErrorGUI("Too many unsuccessful attempts. Setting to 0");
-                    return 0.0;	// exits on failure to complete input operation
+                    return 0.0;    // exits on failure to complete input operation
                 }
             }
         }
@@ -115,7 +123,8 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a choice information panel with the options "Yes" / "No"
-     * @param prompt  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     *
+     * @param prompt <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
      * @return boolean
      * @see javax.swing.JOptionPane
      */
@@ -125,8 +134,9 @@ public final class InputGUI { // final prevents creation of subclasses using ext
 
     /**
      * Displays a choice information panel where the programmer-defined options are laid out in an array of references to <i>String</i> objects. System auto-detects the length of the array.
-     * @param prompt  <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
-     * @param stringArrayOptions  Reference to an array of references to <i>String</i> objects.
+     *
+     * @param prompt             <i>String</i> that is to be displayed. If <i>null</i> no message is displayed.
+     * @param stringArrayOptions Reference to an array of references to <i>String</i> objects.
      * @return an <i>int</i> value: 0 if Yes is clicked, 1 if No is clicked, -1 if closed
      * @see javax.swing.JOptionPane
      */

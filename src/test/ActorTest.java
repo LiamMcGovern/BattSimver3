@@ -66,7 +66,7 @@ public class ActorTest {
         //Test out modifications to Hobbit stealth field.
         System.out.println("Test and verify Hobbit subclass set Methods");
         System.out.println("Printing contents of UNmodified actor \n" + hob1);
-        ((Hobbit)hob1).setStealth(((Hobbit)hob1).getStealth() + 1); //Increases current Stealth by one.
+        ((Hobbit) hob1).setStealth(((Hobbit) hob1).getStealth() + 1); //Increases current Stealth by one.
         System.out.println("Printing contents of modified actor (Post changing stealth) \n" + hob1); //Proof
         //END-Test out modifications to Hobbit boolean values, and the Hobbit's set Methods
 
@@ -90,7 +90,7 @@ public class ActorTest {
 
         System.out.println("Printing all the actors");
         //Print to console the final actors.
-        for (int i = 0; i < arrayOfActors.length-1; i++) {
+        for (int i = 0; i < arrayOfActors.length - 1; i++) {
             System.out.println(arrayOfActors[i]);
         }
         //END-Print to console the final actors.

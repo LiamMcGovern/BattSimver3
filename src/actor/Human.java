@@ -7,7 +7,7 @@ import util.SingletonRandom;
 /**
  * Created by Lenny on 2/28/14.
  */
-public class Human extends Actor{
+public class Human extends Actor {
     /**
      * armor double value represents the quantity of armor a <b>Human</b> possess. It will act as extra health.
      */
