@@ -1,5 +1,6 @@
 package actor;
 
+import army.Army;
 import util.InputGUI;
 
 
@@ -50,7 +51,24 @@ public class Wizard extends Actor {
         boolean hasHorse = (Math.random() < CHANCEOFHORSE); //91% Chance.
         boolean hasStaff = (Math.random()  < CHANCEOFSTAFF);  //13% Chance.
     }
+    public Wizard(Army allegiance) {
+        super(allegiance);
+            //Upon a call of the Wizard constructor the Wizard inherits all of the fields of Actor + all Below.
+            //Given that these following variables are not needed beyond the scope of the constructor, it would be poor
+            //programming practise to declare them as instance fields.
+            /** {@value} */
+            final double CHANCEOFHORSE = 0.91;//Probability of starting with a horse
+            /** {@value} */
+            final double CHANCEOFSTAFF = 0.13;//Probability of starting with a horse
 
+            //The below operations generate a random number in order between 0.0 and 1.0, then compare that number to the
+            //predefined chance value, to result in a boolean value that represent the Wizard's possession of the
+            //corresponding asset.
+
+            //[-----------------RANDOM NUMBER[0-1]------ | Less than  \/ chance? | chance value |
+            boolean hasHorse = (Math.random() < CHANCEOFHORSE); //91% Chance.
+            boolean hasStaff = (Math.random()  < CHANCEOFSTAFF);  //13% Chance.
+        }
     /**
      * Returns a formatted string of the <b>Wizards</b> attributes including it's possessions (Staff or horse).
      *

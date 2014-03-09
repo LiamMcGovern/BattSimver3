@@ -66,8 +66,6 @@ public class Orc extends Actor {
     }
 
     public Orc (Army army){
-
-        //super.setActorAllegiance(army);
         super(army);
         /** We must reset the health, since the Orc has a different range for Health values*/
         setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));

@@ -28,11 +28,24 @@ public class Army {
         armyForces = new ArrayList<Actor>();
     }
 
+    /**
+     * Constructor for army, that recieves a name and automagically populates the army's forces based on the provided
+     * quantityOfActors arguement.
+     * @param armyName String that will become the aArmy's name
+     * @param quantityOfActors Quantity of actors to Populate the Army with.
+     */
     public Army(String armyName, int quantityOfActors){
         this.armyName = armyName;
         armyForces = new ArrayList<Actor>(quantityOfActors);
     }
 
+    /**
+     * Populates the army with the provided arguments quantity. The choice of each is based on the probability of each
+     * appearing. It makes sense that their is a higher probability to witness a Orc / Human in battle then a Wizard
+     * so I have implemented the probability to address that, and to establish a realistic representation of
+     * a live Battlefield.
+     * @param quantityOfActors
+     */
     public void fillArmy(int quantityOfActors){
         //Probabilities
         final double PROBABILITY_OF_ORC = 0.4;
@@ -43,10 +56,9 @@ public class Army {
 
         /**
          * Really long winded method of implementing a probability based system, that generates actors
+         * Currently rewriting a util Class to do the same thing, but as of Submission that is not prepared for
+         * a release.
          */
-
-
-
         for (i=0;i<quantityOfActors;i++){
             Actor tempActor;
             double tempNum = Math.random();
@@ -78,10 +90,18 @@ public class Army {
         return armyName;
     }
 
-
+    /**
+     * Allows for the Army's forces to be reassigned to another ArrayList, it is however unlikely to be implemented.
+     * @param armyForces
+     */
     public void setArmyForces(ArrayList<Actor> armyForces) {
         this.armyForces = armyForces;
     }
+
+    /**
+     * Simple method to assign the respective Army's name
+     * @param armyName
+     */
     public void setArmyName(String armyName) {
         this.armyName = armyName;
     }
