@@ -12,7 +12,7 @@ import util.SingletonRandom;
  * limits.</p>
  *
  * @author Liam McGovern [Input and SingletonRandom Classes are used with permission from Rex Woolard]
- * @version Assignment 2, Object Oriented Programming.
+ * @version Assignment 3, Object Oriented Programming.
  *          Project:  BattleField Simulator
  *          Lab Professor: David Houtman
  */

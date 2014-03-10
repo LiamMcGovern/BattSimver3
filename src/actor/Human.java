@@ -5,7 +5,16 @@ import util.InputGUI;
 import util.SingletonRandom;
 
 /**
- * Created by Lenny on 2/28/14.
+ * A reference to object of type <b>Human</b>, inherits all values from the super class <i>Actor</i>, and along with
+ * these it contains values representing the Human state of hasMount. A armor double value has been introduced to this
+ * class which represents a form of additional health.
+ * Upon calling the constructor, presence of either asset is determined by a probability statement.
+ * This statement is the result of a comparison between a random number (0-1) and a predefined constant representing
+ * the probability.
+ * @author Liam McGovern
+ * @version Assignment 3, Object Oriented Programming.
+ *          Project:  BattleField Simulator
+ *          Lab Professor: David Houtman
  */
 public class Human extends Actor {
     /**
@@ -42,6 +51,7 @@ public class Human extends Actor {
      */
     public Human(Army allegiance) {
         super(allegiance);
+        System.out.println("Human constructor called.");
         final double CHANCEOFMOUNT = 0.42;
         setHasMount(Math.random() < CHANCEOFMOUNT); //91% Chance.
         setArmor(SingletonRandom.instance.getNormalDistribution(MIN_ARMOR, MAX_ARMOR, 5.0));
@@ -66,24 +76,6 @@ public class Human extends Actor {
         setHasMount(InputGUI.getBooleanGUI(String.format("Is %s riding a Mount?", super.getName())));
         setArmor(InputGUI.getDouble((String.format("Input %s's Armor [This must be between %4.1f and %4.1f]",
                 super.getName(), MAX_ARMOR, MIN_ARMOR)), MIN_ARMOR, MAX_ARMOR));
-    }
-
-    /**
-     * Returns the value of the matching Object's armor field.
-     *
-     * @return Returns the Human's armor value (double).
-     * @see Human
-     */
-    public double getArmor() {
-        return this.armor;
-    }
-
-    /**
-     *
-     * @return Returns a boolean value representing the Human's possession of a Mount.
-     */
-    public boolean getHasMount() {
-        return this.hasMount;
     }
 
     /**
@@ -113,4 +105,23 @@ public class Human extends Actor {
             this.armor = armor;//If user input is valid set Attribute to that value.
         }
     }
+
+    /**
+     * Returns the value of the matching Object's armor field.
+     *
+     * @return Returns the Human's armor value (double).
+     * @see Human
+     */
+    public double getArmor() {
+        return this.armor;
+    }
+
+    /**
+     *
+     * @return Returns a boolean value representing the Human's possession of a Mount.
+     */
+    public boolean getHasMount() {
+        return this.hasMount;
+    }
+
 }

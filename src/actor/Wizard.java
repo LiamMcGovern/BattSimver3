@@ -13,7 +13,7 @@ import util.InputGUI;
  * <p/>
  *
  * @author Liam McGovern
- * @version Assignment 2, Object Oriented Programming.
+ * @version Assignment 3, Object Oriented Programming.
  *          Project:  BattleField Simulator
  *          Lab Professor: David Houtman
  */

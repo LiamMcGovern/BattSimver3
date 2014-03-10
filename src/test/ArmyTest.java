@@ -9,6 +9,15 @@ import java.util.Scanner;
 /**
  * Created by lvm on 3/9/14.
  */
+
+/**
+* Test program used to demonstrate the functionality of the <b>Army</b> objects methods.
+*
+* @author Liam McGovern
+* @version Assignment 3, Object Oriented Programming.
+*          Project:  BattleField Simulator
+*          Lab Professor: David Houtman
+*/
 public class ArmyTest {
 
     public static void main(String[] args) {

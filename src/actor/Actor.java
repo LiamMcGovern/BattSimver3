@@ -16,7 +16,7 @@ import java.lang.String;
  * <p/>
  *
  * @author Liam McGovern [Input and SingletonRandom Classes are used with permission from Rex Woolard]
- * @version Assignment 2, Object Oriented Programming.
+ * @version Assignment 3, Object Oriented Programming.
  *          Project:  BattleField Simulator
  *          Lab Professor: David Houtman
  */
@@ -106,8 +106,14 @@ public abstract class Actor {
         //-----------Attributes-------------
     }
 
+    /**
+     *<i>Actor</i> constructor establishes values for each attribute based on the generation of a random number.
+     * The <i>Actor</i> has a name and serial number associated with it, to keep track of the various actors.
+     * @param allegiance argument value will be associated with the Actor object's actorAllegiance field.
+     */
     Actor(Army allegiance) {
         this.actorAllegiance = allegiance; //Allow's for the Actor's allegiance to be set to a specific Army.
+        System.out.println("Actor constructor called.");
 
         actorSerialNumber++;//Increased upon each instantiation to correlate with the quantity of Actors created.
         actorId = actorSerialNumber; //Make id = value of actorSerialNumber

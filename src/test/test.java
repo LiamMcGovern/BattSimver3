@@ -8,7 +8,6 @@ import actor.Orc;
  */
 public class test {
     public static void main(String[] args) {
-        Actor billy = new Orc();
-        System.out.println(billy);
+
     }
 }

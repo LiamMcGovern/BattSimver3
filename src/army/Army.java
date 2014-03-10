@@ -5,7 +5,14 @@ import actor.*;
 import java.util.ArrayList;
 
 /**
- * Created by Lenny on 2/26/14.
+ * A reference to object of type <b>Army</b> contains the following instance fields. armyName, a String representation
+ * of the Army objects name. <br></br> armyForces a collection based ArrayList which contains the reference to
+ * locations of the Army object's Actors.
+ *
+ * @author Liam McGovern
+ * @version Assignment 3, Object Oriented Programming.
+ *          Project:  BattleField Simulator
+ *          Lab Professor: David Houtman
  */
 public class Army {
     /**

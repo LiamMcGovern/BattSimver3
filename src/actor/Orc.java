@@ -6,8 +6,17 @@ import util.InputGUI;
 import util.SingletonRandom;
 
 /**
- * Created by Lenny on 2/28/14.
- */
+ * A reference to object of type <b>Orc</b>, inherits all values from the super class <i>Actor</i>, and along with
+ * these it contains values representing the Orc state of isRaging. A size double value has been introduced to this
+ * class which effects the speed and overall health of the Orc.
+ * Upon calling the constructor, presence of either asset is determined by a probability statement.
+ * This statement is the result of a comparison between a random number (0-1) and a predefined constant representing
+ * the probability.
+* @author Liam McGovern
+* @version Assignment 3, Object Oriented Programming.
+*          Project:  BattleField Simulator
+*          Lab Professor: David Houtman
+*/
 public class Orc extends Actor {
     /**
      * <i>rage</i> value represents if Orc is in a state of rage, if it is the amount on damage dealt will be
@@ -79,6 +88,7 @@ public class Orc extends Actor {
      */
     public Orc(Army army) {
         super(army);
+        System.out.println("Orc constructor called.");
         /** We must reset the health, since the Orc has a different range for Health values*/
         setHealth(SingletonRandom.instance.getNormalDistribution(ORC_MIN_HEALTH, ORC_MAX_HEALTH, 5));
         setSize(SingletonRandom.instance.getNormalDistribution(MIN_SIZE, MAX_SIZE, 4));
@@ -88,7 +98,9 @@ public class Orc extends Actor {
         setIsRaging(Math.random() < CHANCE_OF_RAGE); //by default the Orc is not raging.
     }
 
-
+    /**
+     * Overridden method to allow input of all Orc instance variables.
+     */
     @Override
     public void inputAllFields() {
         super.inputAllFields();
@@ -131,20 +143,41 @@ public class Orc extends Actor {
         }
     }
 
-    public boolean getIsRaging() {
-        return isRaging;
-    }
-
+    /**
+     * Allows for modification of the isRaging boolean value.
+     * @param isRaging argument value to set isRaging to.
+     */
     public void setIsRaging(boolean isRaging) {
         this.isRaging = isRaging;
     }
 
+    /**
+     * Allow for modification of the size of the Orc. Designed to check against the predefined MIN and MAX.
+     * @param size argument to adjust the size to.
+     */
+    public void setSize(double size) {
+        if (size > MAX_SIZE) { this.size = MAX_SIZE;
+            System.out.printf("The entered Health value is lower than specified limits," +
+                " setting the value to defined min %.1f instead %n", this.MAX_SIZE); }
+        else if (size < MIN_SIZE) { this.size = MIN_SIZE;
+            System.out.printf("The entered Health value is lower than specified limits," +
+                    " setting the value to defined min %.1f instead %n", this.MIN_SIZE); }
+        else { this.size = size; }
+    }
+
+    /**
+     * Returns the size field value
+     * @return return value of object's size field
+     */
     public double getSize() {
         return size;
     }
 
-    public void setSize(double size) {
-        this.size = size;
+    /**
+     * boolean value which represents the current status of this objects rage boolean value.
+     * @return Return the boolean value of this object's isRaging field.
+     */
+    public boolean getIsRaging() {
+        return isRaging;
     }
-
 }
